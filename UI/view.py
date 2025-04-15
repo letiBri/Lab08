@@ -51,7 +51,7 @@ class View(ft.UserControl):
         row1 = ft.Row([
             ft.Column([self._logo]),
             ft.Column([self._ddNerc, self._txtYears, self._txtHours, self._btnWorstCase], spacing=60)
-        ],alignment=ft.MainAxisAlignment.CENTER, spacing=30)
+        ], alignment=ft.MainAxisAlignment.CENTER, spacing=30)
         self._page.add(row1)
 
         self._controller.fillDD()
