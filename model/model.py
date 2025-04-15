@@ -14,13 +14,12 @@ class Model:
 
 
     def worstCase(self, nerc, maxY, maxH):
-        # TO FILL
-        self._solBest = []
+        self._solBest = []  # resetto la mia lista che contiene la soluzione ottima ogni volta che faccio la ricorsione su una nuova query
         self.maxPersone = -1
         self.oreTotali = 0
         self.loadEvents(nerc)
         self.ricorsione([], maxY, maxH, self._listEvents)
-        self._solBest.sort(key=lambda x: x.id)
+        self._solBest.sort(key=lambda x: x.id)  # ordino per id
         return self._solBest, self.maxPersone, self.oreTotali
 
     def isAdmissible(self, parziale, e, maxY, maxH):
@@ -64,7 +63,6 @@ class Model:
         return contaOre
 
     def ricorsione(self, parziale, maxY, maxH, lista_eventi):
-        # TO FILL
         if self.isFinished(parziale, lista_eventi, maxY, maxH):
             if self.calcolaPersone(parziale) > self.maxPersone:
                 self.maxPersone = self.calcolaPersone(parziale)
@@ -84,7 +82,7 @@ class Model:
 
     def loadNerc(self):
         self._listNerc = DAO.getAllNerc()
-        self._listNerc.sort(key=lambda x: x.value)
+        self._listNerc.sort(key=lambda x: x.value)  # ordino per value
 
     @property
     def listNerc(self):

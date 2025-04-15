@@ -6,8 +6,6 @@ class View(ft.UserControl):
     def __init__(self, page: ft.Page):
         super().__init__()
         # page stuff
-
-        self._txtOut = None
         self._page = page
         self._page.title = "TdP 2024 - Insurance Unit"
         self._page.horizontal_alignment = 'CENTER'
@@ -19,15 +17,12 @@ class View(ft.UserControl):
         self._controller = None
         # graphical elements
         self._title = None
-        self.txt_name = None
-        self.btn_hello = None
-        self.txt_result = None
-        self.txt_container = None
         self._btnWorstCase = None
         self._txtHours = None
         self._logo = None
         self._txtYears = None
         self._ddNerc = None
+        self._txtOut = None
 
     def load_interface(self):
         # title
@@ -36,25 +31,17 @@ class View(ft.UserControl):
 
         # ROW with controls
         img_path = os.path.join(os.getcwd(), 'UI/NERC-map.png')
-        self._logo = ft.Image(src=img_path,
-                              width=500,
-                              height=500,
-                              )
+        self._logo = ft.Image(src=img_path, width=500, height=500)
 
         self._ddNerc = ft.Dropdown(label="Select NERC")
-
+        self._controller.fillDD()
 
         self._txtYears = ft.TextField(label="Insert max years")
         self._txtHours = ft.TextField(label="Insert max hours")
         self._btnWorstCase = ft.ElevatedButton(text="Worst-Case analysis", on_click=self._controller.handleWorstCase)
 
-        row1 = ft.Row([
-            ft.Column([self._logo]),
-            ft.Column([self._ddNerc, self._txtYears, self._txtHours, self._btnWorstCase], spacing=60)
-        ], alignment=ft.MainAxisAlignment.CENTER, spacing=30)
+        row1 = ft.Row([ft.Column([self._logo]), ft.Column([self._ddNerc, self._txtYears, self._txtHours, self._btnWorstCase], spacing=60)], alignment=ft.MainAxisAlignment.CENTER, spacing=30)
         self._page.add(row1)
-
-        self._controller.fillDD()
 
         #TextOutput
         self._txtOut = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=False)

@@ -17,7 +17,7 @@ class Controller:
         # TO FILL
         self._view._txtOut.controls.clear()
         if self._view._txtYears.value is None or self._view._txtHours.value is None or self.nerc is None:
-            self._view.create_alert("inserisci tutti i valori")
+            self._view.create_alert("Attenzione: inserisci tutti i valori!")
             self._view.update_page()
             return
         maxY = int(self._view._txtYears.value)
@@ -35,7 +35,7 @@ class Controller:
         nercList = self._model.listNerc
 
         for n in nercList:
-            self._view._ddNerc.options.append(ft.dropdown.Option(key=n.value, data=n, on_click=self.salvaNerc))
+            self._view._ddNerc.options.append(ft.dropdown.Option(key=n.value, data=n, on_click=self.salvaNerc))  # per salvare l'oggetto nerc
         self._view.update_page()
 
     def fillIDMap(self):
